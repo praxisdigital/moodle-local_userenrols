@@ -29,10 +29,6 @@
 
     defined('MOODLE_INTERNAL') || die();
 
-    require_once("{$CFG->dirroot}/lib/accesslib.php");
-    require_once("{$CFG->dirroot}/lib/enrollib.php");
-    require_once("{$CFG->dirroot}/lib/grouplib.php");
-    require_once("{$CFG->dirroot}/lib/navigationlib.php");
     require_once("{$CFG->dirroot}/group/lib.php");
 
 
@@ -293,7 +289,7 @@
                 // returned when using that identifying field, so
                 // use ->get_records method to make that detection
                 // and inform user
-                $user_rec_array = $DB->get_records('user', array($ident_field => addslashes($ident_value), 'deleted' => 0));
+                $user_rec_array = $DB->get_records('user', array($ident_field => $ident_value, 'deleted' => 0));
                 // Should have one and only one record, otherwise
                 // report it and move on to the next
                 $user_rec_count = count($user_rec_array);
@@ -360,19 +356,15 @@
 
                         // Make a new group for this course
                         $new_group = new stdClass();
-                        $new_group->name = addslashes($group_name);
+                        $new_group->name = $group_name;
                         $new_group->courseid = $course->id;
                         if (false === ($assign_group_id = groups_create_group($new_group))) {
                             $result .= sprintf(get_string('ERR_CREATE_GROUP', self::PLUGIN_NAME), $line_num, $group_name);
                             continue;
                         } else {
                             // Add the new group to our list for the benefit of
-                            // the next contestant. Strip the slashes off the
-                            // name since we do a name comparison earlier when
-                            // trying to find the group in our local cache and
-                            // an escaped semi-colon will cause the test to fail.
-                            $new_group->name   =
-                            $assign_group_name = stripslashes($new_group->name);
+                            // the next contestant.
+                            $assign_group_name = $new_group->name;
                             $new_group->id = $assign_group_id;
                             $existing_groups[] = $new_group;
                         }
