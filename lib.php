@@ -289,7 +289,7 @@
                 // returned when using that identifying field, so
                 // use ->get_records method to make that detection
                 // and inform user
-                $user_rec_array = $DB->get_records('user', array($ident_field => $ident_value, 'deleted' => 0));
+                $user_rec_array = $DB->get_records('user', [$ident_field => $ident_value, 'deleted' => 0]);
                 // Should have one and only one record, otherwise
                 // report it and move on to the next
                 $user_rec_count = count($user_rec_array);

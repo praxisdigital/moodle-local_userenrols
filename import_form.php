@@ -156,7 +156,7 @@
 
             if ($group_assign) {
                 $group_id = (empty($data[local_userenrols_plugin::FORMID_GROUP_ID])
-                          ? 0 : $group_assign) ? (int)($data[local_userenrols_plugin::FORMID_GROUP_ID] : 0;
+                          ? 0 : $group_assign) ? (int)$data[local_userenrols_plugin::FORMID_GROUP_ID] : 0;
             } else {
                 $group_id = 0;
             }
