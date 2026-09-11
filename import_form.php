@@ -149,14 +149,14 @@
 
             // For Yes/No select 1 and 0 only, anything else not valid
             $group_assign = empty($data[local_userenrols_plugin::FORMID_GROUP])
-                          ? 0 : intval($data[local_userenrols_plugin::FORMID_GROUP]);
+                          ? 0 : (int)$data[local_userenrols_plugin::FORMID_GROUP];
             if ($group_assign < 0 or $group_assign > 1) {
                 $result[local_userenrols_plugin::FORMID_GROUP] = get_string('VAL_INVALID_SELECTION', local_userenrols_plugin::PLUGIN_NAME);
             }
 
             if ($group_assign) {
                 $group_id = (empty($data[local_userenrols_plugin::FORMID_GROUP_ID])
-                          ? 0 : $group_assign) ? intval($data[local_userenrols_plugin::FORMID_GROUP_ID]) : 0;
+                          ? 0 : $group_assign) ? (int)$data[local_userenrols_plugin::FORMID_GROUP_ID] : 0;
             } else {
                 $group_id = 0;
             }
@@ -173,7 +173,7 @@
                 $group_create = 0;
             }
             if ($group_create < 0 or $group_create > 1) {
-                $result[local_userenrols_plugin::FORMID_GROUPING] = get_string('VAL_INVALID_SELECTION', local_userenrols_plugin::PLUGIN_NAME);
+                $result[local_userenrols_plugin::FORMID_GROUP_CREATE] = get_string('VAL_INVALID_SELECTION', local_userenrols_plugin::PLUGIN_NAME);
             }
 
             // File is not in the $files var, rather the itemid is in

@@ -47,7 +47,7 @@
 
     $user_context = context_user::instance($USER->id);
 
-    // Want this for subsequent print_error() calls
+    // Want this for subsequent exception redirects
     $course_url = new moodle_url("{$CFG->wwwroot}/course/view.php", array('id' => $COURSE->id));
     $groups_url = new moodle_url("{$CFG->wwwroot}/group/index.php", array('id' => $COURSE->id));
     $enrol_url  = new moodle_url("{$CFG->wwwroot}/user/index.php",  array('id' => $COURSE->id));
@@ -86,7 +86,7 @@
     }
     // Deal breaker
     if (null == $manual_enrol_instance) {
-        print_error('ERR_NO_MANUAL_ENROL', local_userenrols_plugin::PLUGIN_NAME, $course_url);
+        throw new \moodle_exception('ERR_NO_MANUAL_ENROL', local_userenrols_plugin::PLUGIN_NAME, $course_url);
     }
 
     // Iterate the list of active enrol plugins looking for

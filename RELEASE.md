@@ -1,3 +1,7 @@
+##### V0.0.12_00 (Build 2026090900)
+
+* Added support for Moodle 5.2
+
 ##### Ver. 2018052009 Release 0.0.10_34 (Build 2020053100)
 
   * Use more flexible regex for idnumber validation
